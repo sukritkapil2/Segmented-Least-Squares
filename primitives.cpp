@@ -3,6 +3,10 @@
 
 using namespace std;
 
+bool operator < (Point a, Point b) {
+    return a.getX() < b.getX();
+}
+
 Point::Point() {
     this->x = 0;
     this->y = 0;
@@ -47,16 +51,32 @@ Point Line::getP2() {
     return this->p2;
 }
 
-vector<Line> FindSegmentedLeastSquares(vector<Point> V, int C) {
+vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
     vector<Line> result;
-    int n = V.size();
+    int n = V.size() - 1;
 
-    vector<vector<double>> e(n+1, vector<double>(n+1, 0));
+    ofstream pointsFile, linesFile;
+    pointsFile.open("points.txt");
+    linesFile.open("lines.txt");
+
+    for(int i = 1;i <= n; i++) {
+        pointsFile << V[i].getX() << " " << V[i].getY() << endl;
+    }
+
+    pointsFile.close();
+
+    vector<vector<double>> e(n+1, vector<double>(n+1, 0.0));
     vector<double> OPT(n+1, 0);
     vector<int> turns(n+1, 0);
 
     //Since the algorithm needs points in increasing order, we sort the vector
     sort(V.begin(), V.end());
+
+    cout << "\nPoints after sorting : \n" << endl;
+
+    for(auto point : V) {
+        cout << "( " << point.getX() << " , " << point.getY() << " )" << endl;
+    }
 
     //Next, we need to find e(i, j) for each x subinterval from i to j
     //The solution for the best fit line in closed form is with
@@ -87,18 +107,31 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, int C) {
             long long numerator = num_points * sumXY - sumX * sumY;
             long long denominator = num_points * sumXSq - sumX * sumX;
 
-            double a = (denominator == 0) ? numeric_limits<double>::infinity() : numerator/denominator;
+            double a;
 
-            numerator = sumY - a * sumX;
-            denominator = num_points;
+            if (numerator == 0) a = 0.0;
+            else {
+                a = (denominator == 0) ? numeric_limits<double>::infinity() : numerator/(double) denominator;
+            }
 
-            double b = numerator/denominator;
+            double b = (sumY - a * sumX)/(double) num_points;
+
+            e[i][j] = 0.0;
 
             for(int t = i;t <= j; t++) {
-                double error = V[i].getY() - a * V[i].getX() - b;
-                e[i][j] += error;
+                double error = V[t].getY() - a * V[t].getX() - b;
+                e[i][j] += error * error;
             }
         }
+    }
+
+    cout << "\ne Matrix: \n" << endl;
+
+    for(auto row : e) {
+        for(auto val : row) {
+            cout << val << " ";
+        }
+        cout << endl;
     }
 
     for(int j = 1;j <= n; j++) {
@@ -123,6 +156,8 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, int C) {
 
     int count = 0;
 
+    cout << endl;
+
     while(start > 0) {
 
         start = turns[end];
@@ -134,19 +169,14 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, int C) {
         result.push_back((*line));
         count++;
 
+        linesFile << p1.getX() << " " << p1.getY() << " " << p2.getX() << " " << p2.getY() << endl;
+
+        cout << "Segment " << count << " from (" << p1.getX() << " , " << p1.getY() << ") to (" << p2.getX() << " , " << p2.getY() << "). e : " << e[start][end] << "\n";
+
         end = start - 1;
     }
 
-    cout << count << " Segments for the least error\n" << endl;
-
-    for(int i = count-1;i >= 0; i--) {
-        Line line = result[i];
-
-        Point p1 = line.getP1();
-        Point p2 = line.getP2();
-
-        cout << "Segment " << count - (i) << " from (" << p1.getX() << " , " << p1.getY() << ") to (" << p2.getX() << " , " << p2.getY() << ")\n";
-    }
+    cout << "\nOPT value : " << OPT[n] << endl;
 
     return result;
 }

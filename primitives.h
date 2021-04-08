@@ -26,4 +26,4 @@ class Line {
         Point getP2();
 };
 
-vector<Line> FindSegmentedLeastSquares(vector<Point> V, int C);
+vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C);
