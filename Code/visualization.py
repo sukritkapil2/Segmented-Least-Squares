@@ -43,5 +43,9 @@ for segment in segment_list:
 
     plt.plot([x1, x2], [y1, y2])
 
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.title('Segment Least Squares Visualization')
+
 plt.scatter(x, y)
 plt.show()
