@@ -46,12 +46,6 @@ int main() {
         cout << "Enter the value of C (multiple segment penalty): ";
         cin >> C;
 
-        cout << "\nInput Points: \n" << endl;
-
-        for(auto point : points) {
-            cout << "( " << point.getX() << " , " << point.getY() << " )" << endl;
-        }
-
         vector<Line> result = FindSegmentedLeastSquares(points, C);
     }
     else if(choice == 2) {

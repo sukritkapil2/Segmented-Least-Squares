@@ -72,12 +72,6 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
     //Since the algorithm needs points in increasing order, we sort the vector
     sort(V.begin(), V.end());
 
-    cout << "\nPoints after sorting : \n" << endl;
-
-    for(auto point : V) {
-        cout << "( " << point.getX() << " , " << point.getY() << " )" << endl;
-    }
-
     //Next, we need to find e(i, j) for each x subinterval from i to j
     //The solution for the best fit line in closed form is with
     //a = (n*S(xy) - S(x)*S(y))/(n*S(x^2)-(S(x)^2))
@@ -125,15 +119,6 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
         }
     }
 
-    cout << "\ne Matrix: \n" << endl;
-
-    for(auto row : e) {
-        for(auto val : row) {
-            cout << val << " ";
-        }
-        cout << endl;
-    }
-
     for(int j = 1;j <= n; j++) {
         double min_value = numeric_limits<double>::infinity();
         int start = 0;
@@ -152,15 +137,13 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
     }
 
     int end = n;
-    int start;
+    int start = turns[n];
 
     int count = 0;
 
     cout << endl;
 
     while(start > 0) {
-
-        start = turns[end];
 
         Point p1 = V[start];
         Point p2 = V[end];
@@ -174,6 +157,7 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
         cout << "Segment " << count << " from (" << p1.getX() << " , " << p1.getY() << ") to (" << p2.getX() << " , " << p2.getY() << "). e : " << e[start][end] << "\n";
 
         end = start - 1;
+        start = turns[end];
     }
 
     cout << "\nOPT value : " << OPT[n] << endl;
