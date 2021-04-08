@@ -31,8 +31,8 @@ int main() {
  Group Members:
  Sukrit         2018A7PS0205H  
  Sneh Lohia     2018A7PS0171H
- Dhiraaj Desai  2018A7PS
- Purvika        2018A7PS
+ Dhiraaj Desai  2018A7PS0146H
+ Purvika        2018A7PS0232H
     )" << endl;
     
     cout << "Choose input method: \n";
@@ -120,7 +120,8 @@ int main() {
         int x = 1, y;
         int n;
         cin >> n;
-        int C = 1000;
+        int C;
+        cin >> C;
 
         vector<Point> points(n+1, Point());
 

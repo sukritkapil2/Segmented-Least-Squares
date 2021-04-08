@@ -210,7 +210,7 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
 
         linesFile << p1.getX() << " " << p1.getY() << " " << p2.getX() << " " << p2.getY() << endl;
 
-        //cout << "Segment " << count << " from (" << p1.getX() << " , " << p1.getY() << ") to (" << p2.getX() << " , " << p2.getY() << "). e : " << e[start][end] << "\n";
+        cout << "Segment " << count << " from (" << p1.getX() << " , " << p1.getY() << ") to (" << p2.getX() << " , " << p2.getY() << "). e : " << e[start][end] << "\n";
 
         end = start - 1;
         start = turns[end];
@@ -218,7 +218,7 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
 
     cout << "\nOPT value : " << OPT[n] << endl;
 
-    //system("python visualization.py");
+    system("python3 visualization.py");
 
     return result;
 }
