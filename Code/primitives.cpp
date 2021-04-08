@@ -218,7 +218,7 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
 
     cout << "\nOPT value : " << OPT[n] << endl;
 
-    system("python3 visualization.py");
+    system("python visualization.py");
 
     return result;
 }
