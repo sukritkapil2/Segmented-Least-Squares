@@ -11,15 +11,14 @@ int main() {
 
     cout << "Enter " << n << " points in (x, y) format: " << endl;
 
-    vector<Point> points;
+    vector<Point> points(n+1, Point());
 
-    for(int i = 0;i < n; i++) {
+    for(int i = 1;i <= n; i++) {
         int a, b;
         cin >> a >> b;
 
-        Point *point = new Point(a, b);
-
-        points.push_back((*point));
+        points[i].setX(a);
+        points[i].setY(b);
     }
 
     cout << "Enter the value of C (multiple segment penalty): ";
