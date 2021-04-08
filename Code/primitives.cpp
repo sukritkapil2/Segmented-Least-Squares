@@ -1,56 +1,112 @@
+/**
+ * @file primitives.cpp
+ * This file contains the function definitions declared in the primitives.hpp file.
+*/
+
 #include <bits/stdc++.h>
 #include "primitives.h"
 
 using namespace std;
 
+/**
+ * Operator Overloading for Point
+ * @param[in] a First Point
+ * @param[in] b Second Point
+*/
 bool operator < (Point a, Point b) {
     return a.getX() < b.getX();
 }
 
+/**
+ * Empty constructor of point
+*/
 Point::Point() {
     this->x = 0;
     this->y = 0;
 }
 
+/**
+ * Constructor for point
+ * @param[in] x x coordinate of the point
+ * @param[in] y y coordinate of the point
+*/
 Point::Point(int x, int y) {
     this->x = x;
     this->y = y;
 }
 
+/**
+ * Returns the x coordinate of the point
+ * @param[out] x x coordinate of the point
+*/
 int Point::getX() {
     return this->x;
 }
 
+/**
+ * Returns the y coordinate of the point
+ * @param[out] y y coordinate of the point
+*/
 int Point::getY() {
     return this->y;
 }
 
+/**
+ * Sets the x coordinate of the point
+ * @param[in] x x coordinate of the point
+*/
 void Point::setX(int x) {
     this->x = x;
 }
 
+/**
+ * Sets the y coordinate of the point
+ * @param[in] y y coordinate of the point
+*/
 void Point::setY(int y) {
     this->y = y;
 }
 
+/**
+ * Empty constructor for line
+*/
 Line::Line() {
     this->p1 = Point();
     this->p2 = Point();
 }
 
+/**
+ * Constructor for line
+ * @param[in] p1 First Point
+ * @param[in] p2 Second Point
+*/
 Line::Line(Point p1, Point p2) {
     this->p1 = p1;
     this->p2 = p2;
 }
 
+/**
+ * Returns the first point
+ * @param[out] p1 First Point
+*/
 Point Line::getP1() {
     return this->p1;
 }
 
+/**
+ * Returns the second point
+ * @param[out] p2 Second Point
+*/
 Point Line::getP2() {
     return this->p2;
 }
 
+/**
+ * This function uses dynamic programming to find the segments and returns them in the form of an array of lines
+ * @param[in] V vector of input points
+ * @param[in] C cost for multiple segments
+ * @param[out] Lines vector of segments
+*/
 vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
     vector<Line> result;
     int n = V.size() - 1;
@@ -162,7 +218,7 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
 
     cout << "\nOPT value : " << OPT[n] << endl;
 
-    system("python visualization.py");
+    system("python3 visualization.py");
 
     return result;
 }

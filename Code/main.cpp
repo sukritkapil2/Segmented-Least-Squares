@@ -1,8 +1,16 @@
+/**
+ * @file main.cpp
+ * This is the driver file for taking input from the user and showing the output
+*/
+
 #include <bits/stdc++.h>
 #include "primitives.h"
 
 using namespace std;
 
+/**
+ * Driver function for the program
+*/
 int main() {
     int n;
     double C;
