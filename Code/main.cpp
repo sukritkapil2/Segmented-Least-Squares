@@ -36,7 +36,7 @@ int main() {
     )" << endl;
     
     cout << "Choose input method: \n";
-    cout << "1. Manual\n" << "2. File\n" << endl;
+    cout << "1. Manual\n" << "2. File\n" << "3. TC Analysis\n" << endl;
 
     cout << "\nChoice : ";
 
@@ -70,7 +70,7 @@ int main() {
         double time = double(finish-start)/CLOCKS_PER_SEC;
 
         cout << "Time taken : " << time*1000 << " milliseconds";
-    } else {
+    } else if(choice == 2){
         ifstream inputFile;
         string fileName;
         vector<Point> points;
@@ -116,6 +116,32 @@ int main() {
         } else {
             cout << "Error opening file\n" << endl;
         }
+    } else {
+        int x = 1, y;
+        int n;
+        cin >> n;
+        int C = 1000;
+
+        vector<Point> points(n+1, Point());
+
+        for(int i = 1;i <= n; i++) {
+
+            x += 100;
+            y = rand()%100;
+
+            points[i].setX(x);
+            points[i].setY(y);
+        }
+
+        start = clock();
+
+        vector<Line> result = FindSegmentedLeastSquares(points, C);
+
+        finish = clock();
+
+        double time = double(finish-start)/CLOCKS_PER_SEC;
+
+        cout << "Time taken : " << time*1000 << " milliseconds";
     }
     
     return 0;
