@@ -121,6 +121,8 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, int C) {
     int end = n;
     int start;
 
+    int count = 0;
+
     while(start > 0) {
 
         start = turns[end];
@@ -130,8 +132,20 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, int C) {
 
         Line *line = new Line(p1, p2);
         result.push_back((*line));
+        count++;
 
         end = start - 1;
+    }
+
+    cout << count << " Segments for the least error\n" << endl;
+
+    for(int i = count-1;i >= 0; i--) {
+        Line line = result[i];
+
+        Point p1 = line.getP1();
+        Point p2 = line.getP2();
+
+        cout << "Segment " << count - (i) << " from (" << p1.getX() << " , " << p1.getY() << ") to (" << p2.getX() << " , " << p2.getY() << ")\n";
     }
 
     return result;
