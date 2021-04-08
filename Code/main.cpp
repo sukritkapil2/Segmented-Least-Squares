@@ -16,6 +16,8 @@ int main() {
     double C;
     int choice = 1;
 
+    clock_t start, finish;
+
     cout << R"(
    _____                                 _             
   / ____|                               | |            
@@ -26,10 +28,15 @@ int main() {
                __/ |                                   
               |___/                                    
 
+ Group Members:
+ Sukrit         2018A7PS0205H  
+ Sneh Lohia     2018A7PS0171H
+ Dhiraaj Desai  2018A7PS
+ Purvika        2018A7PS
     )" << endl;
     
     cout << "Choose input method: \n";
-    cout << "1. Manual\n" << "2. GUI\n" "3. File\n" << endl;
+    cout << "1. Manual\n" << "2. File\n" << endl;
 
     cout << "\nChoice : ";
 
@@ -54,10 +61,15 @@ int main() {
         cout << "Enter the value of C (multiple segment penalty): ";
         cin >> C;
 
-        vector<Line> result = FindSegmentedLeastSquares(points, C);
-    }
-    else if(choice == 2) {
+        start = clock();
 
+        vector<Line> result = FindSegmentedLeastSquares(points, C);
+
+        finish = clock();
+
+        double time = double(finish-start)/CLOCKS_PER_SEC;
+
+        cout << "Time taken : " << time*1000 << " milliseconds";
     } else {
         ifstream inputFile;
         string fileName;
@@ -92,7 +104,15 @@ int main() {
 
             inputFile.close();
 
+            start = clock();
+
             vector<Line> result = FindSegmentedLeastSquares(points, C);
+
+            finish = clock();
+
+            double time = double(finish-start)/CLOCKS_PER_SEC;
+
+            cout << "Time taken : " << time*1000 << " milliseconds";
         } else {
             cout << "Error opening file\n" << endl;
         }
