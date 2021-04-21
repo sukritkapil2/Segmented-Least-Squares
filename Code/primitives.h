@@ -11,16 +11,16 @@ using namespace std;
  * Point Primitive Class
 */
 class Point {
-    int x;
-    int y;
+    double x;
+    double y;
 
     public:
         Point();
-        Point(int x, int y);
-        int getX();
-        int getY();
-        void setX(int x);
-        void setY(int y);
+        Point(double x, double y);
+        double getX();
+        double getY();
+        void setX(double x);
+        void setY(double y);
 };
 
 /**

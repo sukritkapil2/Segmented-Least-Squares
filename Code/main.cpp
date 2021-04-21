@@ -62,7 +62,7 @@ int main() {
         vector<Point> points(n+1, Point());
 
         for(int i = 1;i <= n; i++) {
-            int a, b;
+            double a, b;
             cin >> a >> b;
 
             points[i].setX(a);

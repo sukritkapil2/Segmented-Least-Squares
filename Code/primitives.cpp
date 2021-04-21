@@ -30,7 +30,7 @@ Point::Point() {
  * @param[in] x x coordinate of the point
  * @param[in] y y coordinate of the point
 */
-Point::Point(int x, int y) {
+Point::Point(double x, double y) {
     this->x = x;
     this->y = y;
 }
@@ -39,7 +39,7 @@ Point::Point(int x, int y) {
  * Returns the x coordinate of the point
  * @param[out] x x coordinate of the point
 */
-int Point::getX() {
+double Point::getX() {
     return this->x;
 }
 
@@ -47,7 +47,7 @@ int Point::getX() {
  * Returns the y coordinate of the point
  * @param[out] y y coordinate of the point
 */
-int Point::getY() {
+double Point::getY() {
     return this->y;
 }
 
@@ -55,7 +55,7 @@ int Point::getY() {
  * Sets the x coordinate of the point
  * @param[in] x x coordinate of the point
 */
-void Point::setX(int x) {
+void Point::setX(double x) {
     this->x = x;
 }
 
@@ -63,7 +63,7 @@ void Point::setX(int x) {
  * Sets the y coordinate of the point
  * @param[in] y y coordinate of the point
 */
-void Point::setY(int y) {
+void Point::setY(double y) {
     this->y = y;
 }
 
@@ -218,7 +218,7 @@ vector<Line> FindSegmentedLeastSquares(vector<Point> V, double C) {
 
     cout << "\nOPT value : " << OPT[n] << endl;
 
-    system("python visualization.py");
+    system("python3 visualization.py");
 
     return result;
 }

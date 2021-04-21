@@ -44,14 +44,14 @@ segment_list = []
 # add the x and y coordinates to the respective lists
 for point in point_lines:
     list = point.split(' ')
-    x.append(int(list[0]))
-    y.append(int(list[1]))
+    x.append(float(list[0]))
+    y.append(float(list[1]))
 
 # add the segments to the segment_list
 for segment in lines_lines:
     list = segment.split(' ')
-    p1 = Point(int(list[0]), int(list[1]))
-    p2 = Point(int(list[2]), int(list[3]))
+    p1 = Point(float(list[0]), float(list[1]))
+    p2 = Point(float(list[2]), float(list[3]))
     l = Line(p1, p2)
     segment_list.append(l)
 
